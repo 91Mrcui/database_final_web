@@ -1,0 +1,38 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'index.css' %}">
+
+<head>
+  <title>Cuicm Test</title>
+    <link rel="icon" type="image/x-icon" href="/static/sysu.ico">
+</head>
+
+<h1><a href="http://127.0.0.1:8000/members/adminpage/" style="color: white;">AC Movie</a></h1>
+
+<h2 style="text-align: center; margin: 1ch; color:antiquewhite;">Add cinema!</h2>
+
+<div style="margin: 0 auto;">
+
+
+<form action="addrecord/" method="post">
+{% csrf_token %}
+
+<p style="color:antiquewhite; text-align:center">影院ID:</p>
+<input name="cid" style="margin-left: 82ch;margin-right: 72ch; margin-top:2ch; margin-bottom:2ch">
+
+<br><br>
+
+<p style="color:antiquewhite; text-align:center">影院名称:</p>
+<input name="name" style="margin-left: 82ch;margin-right: 72ch; margin-top:2ch; margin-bottom:2ch">
+
+<br><br>
+
+<p style="color:antiquewhite; text-align:center">影院地址:</p>
+<input name="address" style="margin-left: 82ch;margin-right: 72ch; margin-top:2ch; margin-bottom:2ch">
+
+<br><br>
+
+<input type="submit" value="Submit" style="margin-left: 84ch;margin-right: 72ch; margin-top:2ch; margin-bottom:2ch; color: white; 
+background-color: #282830; width:14ch; height: 5ch;" >
+
+</form>
+</div>

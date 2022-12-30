@@ -1,0 +1,77 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'index.css' %}">
+
+<head>
+  <title>Cuicm Test</title>
+    <link rel="icon" type="image/x-icon" href="/static/sysu.ico">
+</head>
+
+<h1><a href="http://127.0.0.1:8000/members/" style="color: white;">AC Movie</a></h1>
+<div class="br1">Welcome user  ~ </div>
+
+
+
+
+<div class="grid">
+
+    <form action="http://127.0.0.1:8000/members/searchres/" method="post" class="search">
+        {% csrf_token %}
+      <div class="form__field">
+        <input type="search" name="search" placeholder="What are you looking for?" class="form__input">
+        <input type="submit" value="Search" style="width: 50; color: darkslategrey;">
+      </div>
+      
+    </form>
+
+  </div>
+
+
+
+
+
+<div class="wrapper">
+<div class="cols">
+
+
+
+{%for x in matches%}
+<div class="col" ontouchstart="this.classList.toggle('hover');">
+    <div class="container">
+
+        
+        <div class="front" style="background-image: url({{x.picture}})">
+        
+
+            <div class="inner">
+
+
+                <p>{{x.name}}</p>
+              <span>{{x.foreignname}}</span>
+ 
+
+            </div>
+        </div>
+        <div class="back">
+            <div class="inner">
+
+              <p>{{x.duration}}</p>
+              <p>{{x.type}}</p>
+              <p>评分{{x.score}}</p>
+
+            </div>
+        </div>
+
+        <div class="tag" ><a href="http://127.0.0.1:8000/members/infopage/{{x.movie_id}}">{{x.name}}</a></div>
+
+    </div>
+</div>
+
+
+{%endfor%}
+
+
+
+
+
+</div>
+</div>

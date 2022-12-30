@@ -1,0 +1,192 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'adminpage.css' %}">
+
+<head>
+  <title>Cuicm Test</title>
+    <link rel="icon" type="image/x-icon" href="/static/sysu.ico">
+</head>
+
+
+<h1 >AC Movie</h1>
+<br></br>
+
+<div id="block0">
+<nav style="float: right; width: 40%;"> <!-- The nav link semantically marks your main site navigation -->
+    <ul style=" float:none;">
+        <li style="float: left;list-style: none;padding: 4px 0;"><a href="#block1" style="color:antiquewhite;">电影-</a></li>
+        <li style="float: left;list-style: none;padding: 4px 0;"><a href="#block2" style="color:antiquewhite;">影院-</a></li>
+        <li style="float: left;list-style: none;padding: 4px 0;"><a href="#block3" style="color:antiquewhite;">放映厅-</a></li>
+        <li style="float: left;list-style: none;padding: 4px 0;"><a href="#block4" style="color:antiquewhite;">场次-</a></li>
+        <li style="float: left;list-style: none;padding: 4px 0;"><a href="#block5" style="color:antiquewhite;">用户-</a></li>
+        <li style="float: left;list-style: none;padding: 4px 0;"><a href="#block6" style="color:antiquewhite;">语录</a></li>
+    </ul>
+</nav>
+</div>
+<br></br>
+<br></br>
+<h2 style="color: white; margin-bottom:2ch; text-align: center;">电影信息</h2>
+<div class="tb" id="block1">
+    <table class="rwd-table">
+    <tr>
+        <th>ID</th>
+        <th>name</th>
+        <th>foreign name</th>
+
+      </tr>
+{% for x in movie %}
+<tr>
+<td>{{ x.movie_id }}</td>
+<td>{{ x.name }}</td>
+<td>{{ x.foreignname }}</td>
+</tr>
+{% endfor %}
+<tr><td><a href="https://www.baidu.com/" style="color:antiquewhite;">add record</a></td></tr>
+</table>
+
+
+</div>
+
+<br></br>
+<h2 style="color: white; margin-bottom:2ch; text-align: center;">影院信息</h2>
+<div class="tb" id="block2">
+<table class="rwd-table">
+    <tr>
+        <th>ID</th>
+        <th>name</th>
+        <th>address</th>
+        <th>op1</th>
+        <th>op2</th>
+      </tr>
+{% for x in cinema %}
+<tr>
+<td>{{ x.cinema_id }}</td>
+<td>{{ x.name }}</td>
+<td>{{ x.address }}</td>
+<td><a href="delete/{{x.cinema_id}}">delete</a></td>
+<!-- 第一步在这里设置，超链接后面的是参数 -->
+<td><a href="http://127.0.0.1:8000/members/update/{{x.cinema_id}}">update</a></td>
+</tr>
+{% endfor %}
+<tr><td><a href="http://127.0.0.1:8000/members/add/" style="color:antiquewhite;">add record</a></td></tr>
+</table>
+</div>
+
+
+
+<br></br>
+<h2 style="color: white; margin-bottom:2ch; text-align: center;">影厅信息</h2>
+<div class="tb" id="block3">
+    <table class="rwd-table">
+        <tr>
+            <th>ID</th>
+            <th>name</th>
+            <th>cinema_id</th>
+            <th>capacity</th>
+            <th>op1</th>
+            <th>op2</th>
+          </tr>
+    {% for x in hall %}
+    <tr>
+    <td>{{ x.hall_id }}</td>
+    <td>{{ x.name }}</td>
+    <td>{{ x.cinema_id }}</td>
+    <td>{{x.capacity}}</td>
+    <td><a href="delete/{{x.id}}">delete</a></td>
+    <!-- 第一步在这里设置，超链接后面的是参数 -->
+    <td><a href="update/{{x.id}}">update</a></td>
+    </tr>
+    {% endfor %}
+    <tr><td><a href="https://www.baidu.com/" style="color:antiquewhite;">add record</a></td></tr>
+    </table>
+    </div>
+
+<br></br>
+
+<h2 style="color: white; margin-bottom:2ch; text-align: center;">场次信息</h2>
+<div class="tb" id="block4">
+    <table class="rwd-table">
+        <tr>
+            <th>ID</th>
+            <th>hall_id</th>
+            <th>cinema_id</th>
+            <th>movie_id</th>
+            <th>date</th>
+            <th>start time</th>
+            <th>price</th>
+            <th>Remaining seats</th>
+            <th>op1</th>
+            <th>op2</th>
+          </tr>
+    {% for x in session %}
+    <tr>
+    <td>{{ x.session_id }}</td>
+    <td>{{ x.hall_id}}</td>
+    <td>{{ x.cinema_id }}</td>
+    <td>{{x.movie_id}}</td>
+    <td>{{x.date_}}</td>
+    <td>{{x.starttime}}</td>
+    <td>{{x.price}}</td>
+    <td>{{x.remain}}</td>
+    <td><a href="delete/{{x.id}}">delete</a></td>
+    <!-- 第一步在这里设置，超链接后面的是参数 -->
+    <td><a href="update/{{x.id}}">update</a></td>
+    </tr>
+    {% endfor %}
+    <tr><td><a href="https://www.baidu.com/" style="color:antiquewhite;">add record</a></td></tr>
+    </table>
+    </div>
+
+<br></br>
+
+<h2 style="color: white; margin-bottom:2ch; text-align: center;">用户信息</h2>
+<div class="tb" id="block5">
+    <table class="rwd-table">
+        <tr>
+            <th>ID</th>
+            <th>user name</th>
+            <th>email</th>
+            <th>role</th>
+            <th>op1</th>
+            <th>op2</th>
+          </tr>
+    {% for x in user %}
+    <tr>
+    <td>{{ x.user_id }}</td>
+    <td>{{ x.uname}}</td>
+    <td>{{ x.email }}</td>
+    <td>{{ x.role_}}</td>
+    <td><a href="delete/{{x.id}}">delete</a></td>
+    <!-- 第一步在这里设置，超链接后面的是参数 -->
+    <td><a href="update/{{x.id}}">update</a></td>
+    </tr>
+    {% endfor %}
+    <tr><td><a href="https://www.baidu.com/" style="color:antiquewhite;">add record</a></td></tr>
+    </table>
+</div>
+
+<br></br>
+
+<h2 style="color: white; margin-bottom:2ch; text-align: center;">页面语录</h2>
+<div class="tb" id="block6">
+    <table class="rwd-table" style="margin-left: 18ch; margin-right: 18ch;">
+        <tr>
+            <th>in English</th>
+            <th>in Chinese</th>
+            <th>movie</th>
+            <th>op1</th>
+            <th>op2</th>
+          </tr>
+    {% for x in words %}
+    <tr>
+    <td>{{ x.english }}</td>
+    <td>{{ x.chinese}}</td>
+    <td>{{ x.from_ }}</td>
+
+    <td><a href="delete/{{x.id}}">delete</a></td>
+    <!-- 第一步在这里设置，超链接后面的是参数 -->
+    <td><a href="update/{{x.id}}">update</a></td>
+    </tr>
+    {% endfor %}
+    <tr><td><a href="https://www.baidu.com/" style="color:antiquewhite;">add record</a></td></tr>
+    </table>
+</div>

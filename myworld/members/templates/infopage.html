@@ -1,0 +1,146 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'infopage.css' %}">
+
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cuicm Test</title>
+          <link rel="icon" type="image/x-icon" href="/static/sysu.ico">
+      </head>
+
+    <h1><a href="http://127.0.0.1:8000/members/" style="color: white;">AC Movie</a></h1>
+
+    
+	<body>
+		
+		<section class="page-wrap">
+
+			<header> <!-- Defining the header section of the page with the appropriate tag -->
+				
+				<div>
+            <p style="color: white; font-size:x-large;">
+            <img src="{{movie.picture}}" alt="Movie picture" style="float:left;">
+                {{movie.name}}  </p>
+                
+                <p style="color: white;font-size:medium;"> {{movie.foreignname}}</p>
+                <p style="color: #3b4465;"> --</p>
+                <p style="color: white;font-size:medium;">{{movie.type}} </p>
+                
+                <p style="color: white;font-size:medium;">时长:{{movie.duration}} </p>
+                <p style="color: #3b4465;"> --</p>
+                <p style="color: white;font-size:medium;">上映时间:{{movie.releasedate}} </p>
+                <p style="color: #3b4465;"> --</p>
+                
+                <p style="color:gold;font-size:4ch;">{{movie.score}}分</p>
+                <p style="color:silver;font-size:small;">{{movie.commentscount}}人评分</p>
+            </p>
+
+          
+				</div>
+                
+				<nav> <!-- The nav link semantically marks your main site navigation -->
+					<ul>
+						<li><a href="#block1" style="color:antiquewhite;">Part 1</a></li>
+						<li><a href="#block2" style="color:antiquewhite;">Part 2</a></li>
+						<li><a href="#block3" style="color:antiquewhite;">Part 3</a></li>
+                        <li><a href="#block4" style="color:antiquewhite;">Part 4</a></li>
+					</ul>
+				</nav>
+
+
+			</header>
+
+	  
+			<article id="block1" class="module-block">
+			
+				<h2>剧情简介</h2>
+				
+				<img class="right" src="http://placehold.it/150" alt="" />
+
+				<p>{{movie.detail}}</p>
+
+				
+	
+			</article>
+			
+
+		   
+			<section id="block2" class="module-block">
+
+				<h2>演职员表</h2>
+				
+			   	<article class="right">
+					
+					<p>{{movie.staring}}</p>
+				
+				</article>
+
+			
+			</section>
+
+			
+			<section id="block3" class="module-block">
+				
+				<h2>重映信息</h2>
+                {% for c in cinema  %}
+                
+				<h3 style="font-size: 20px;;">{{c.name}}</h3>
+                <p style="color: grey;">{{c.address}}</p>
+                    {% for s in session  %}
+                    
+                        {%for h in hall%}
+                        {%if h.hall_id == s.hall_id %}
+                        <p>放映日期:{{s.date_}} 开场时间:{{s.starttime}} {{h.name}}({{h.capacity}}) 剩余座位数:{{s.remain}} （票价:{{s.price}}￥）</p>
+                        
+                        {%endif%}
+                        {%endfor%}
+                    {%endfor%}
+                    <HR style="border:1 dashed rgb(150, 149, 149);border-style:dashed; margin-bottom: 1ch;" width="100%" SIZE=0.2 >
+                {%endfor%}
+                
+			</section>
+
+            <section id="block4" class="module-block">
+
+				<h2>第三方评论</h2>
+				
+			   	<article class="right">
+					
+					{%for x in comment%}
+                    {%for u in user%}
+                    {%if u.user_id == x.user_id %}
+                    <p style="font-size: small;">
+                    <img src="{{u.headimg}}" alt="head image" style="float:left; margin-left:0ch;margin-right:1ch;" width="35" height="38">
+                    {{u.uname}} </br >{{u.email}}</p>
+                    <p style="font-size: medium; color: black;background-color:aliceblue; margin-bottom: 3ch;">{{x.comments_}}</p>
+                    {%endif%}
+                    {%endfor%}
+                    
+                    {%endfor%}
+				
+				</article>
+
+			
+			</section>
+
+
+			
+		</section><!-- page-wrap -->
+			
+
+		<footer> 
+
+
+			<p>Copyright 2022 - <a href="https://github.com/91Mrcui">Cui Canming</a></p>
+			<p class="up" ><a href="#">Go Up ⇪</a></p>
+
+		</footer>
+	
+
+
+
+	</body>
+</html>
